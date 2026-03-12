@@ -1,0 +1,339 @@
+{
+  "store": {
+    "name": "Daily Deals With Crazy Offers",
+    "instagram": "@dailydealswithcrazyoffers",
+    "tagline": "Premium Quality | Trendy Collections | Best Prices",
+    "phone": "+91 76003 54912",
+    "whatsapp": "917600354912",
+    "email": "dailydealswithcrazyoffers@gmail.com",
+    "upi": "7600354912@upi",
+    "formspree": "https://formspree.io/f/YOUR_FORM_ID",
+    "free_delivery_threshold": 600,
+    "cod_charge": 20
+  },
+  "categories": ["T-Shirts", "Shirts", "Kurtis", "Dresses", "Jeans", "Shorts", "Hoodies", "Accessories"],
+  "products": [
+    {
+      "id": "DDCO-001",
+      "name": "Classic Oversized Drop-Shoulder Tee",
+      "category": "T-Shirts",
+      "description": "Experience ultimate comfort with our bestselling oversized drop-shoulder tee. Crafted from premium 240 GSM cotton, this tee offers a relaxed fit perfect for everyday casual wear. The heavyweight fabric ensures durability and a premium feel that lasts wash after wash.",
+      "images": [
+        "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&q=80",
+        "https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=600&q=80",
+        "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=600&q=80",
+        "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=600&q=80"
+      ],
+      "rating": 4.6,
+      "reviews": 128,
+      "active": true,
+      "featured": true,
+      "fabric": "100% Premium Cotton (240 GSM)",
+      "pattern": "Solid",
+      "net_quantity": 1,
+      "country": "India",
+      "hsn": "6109",
+      "gst": 5,
+      "sizes": {
+        "XS": { "price": 499, "stock": 10 },
+        "S": { "price": 499, "stock": 8 },
+        "M": { "price": 549, "stock": 15 },
+        "L": { "price": 549, "stock": 12 },
+        "XL": { "price": 599, "stock": 6 },
+        "XXL": { "price": 599, "stock": 4 },
+        "XXXL": { "price": 649, "stock": 2 },
+        "4XL": { "price": 699, "stock": 0 }
+      }
+    },
+    {
+      "id": "DDCO-002",
+      "name": "Trendy Floral Print Kurti",
+      "category": "Kurtis",
+      "description": "Elevate your ethnic wardrobe with this stunning floral print kurti. Made from breathable rayon fabric, it drapes beautifully and keeps you comfortable all day. Perfect for festive occasions, casual outings, and office wear. Pairs well with leggings, palazzos, or jeans.",
+      "images": [
+        "https://images.unsplash.com/photo-1594938298603-c8148c4b4b78?w=600&q=80",
+        "https://images.unsplash.com/photo-1612095269037-5c0f3b21e04a?w=600&q=80",
+        "https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=600&q=80",
+        "https://images.unsplash.com/photo-1617922001439-4a2e6562f328?w=600&q=80"
+      ],
+      "rating": 4.4,
+      "reviews": 87,
+      "active": true,
+      "featured": true,
+      "fabric": "Rayon (Viscose)",
+      "pattern": "Floral Print",
+      "net_quantity": 1,
+      "country": "India",
+      "hsn": "6211",
+      "gst": 5,
+      "sizes": {
+        "XS": { "price": 649, "stock": 5 },
+        "S": { "price": 649, "stock": 10 },
+        "M": { "price": 699, "stock": 14 },
+        "L": { "price": 699, "stock": 9 },
+        "XL": { "price": 749, "stock": 3 },
+        "XXL": { "price": 749, "stock": 2 },
+        "XXXL": { "price": 799, "stock": 1 },
+        "4XL": { "price": 849, "stock": 0 }
+      }
+    },
+    {
+      "id": "DDCO-003",
+      "name": "Slim Fit Stretch Denim Jeans",
+      "category": "Jeans",
+      "description": "Our slim fit stretch denim jeans combine style and comfort seamlessly. With 2% elastane added to premium denim, you get the classic look with added stretch for all-day wear. Features five-pocket styling, button fly, and pre-washed finish for a lived-in feel from day one.",
+      "images": [
+        "https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&q=80",
+        "https://images.unsplash.com/photo-1604176354204-9268737828e4?w=600&q=80",
+        "https://images.unsplash.com/photo-1582552938357-32b906df40cb?w=600&q=80",
+        "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&q=80"
+      ],
+      "rating": 4.5,
+      "reviews": 203,
+      "active": true,
+      "featured": true,
+      "fabric": "98% Cotton, 2% Elastane Denim",
+      "pattern": "Solid",
+      "net_quantity": 1,
+      "country": "India",
+      "hsn": "6203",
+      "gst": 12,
+      "sizes": {
+        "XS": { "price": 899, "stock": 6 },
+        "S": { "price": 899, "stock": 11 },
+        "M": { "price": 949, "stock": 14 },
+        "L": { "price": 949, "stock": 8 },
+        "XL": { "price": 999, "stock": 4 },
+        "XXL": { "price": 999, "stock": 3 },
+        "XXXL": { "price": 1049, "stock": 1 },
+        "4XL": { "price": 1099, "stock": 0 }
+      }
+    },
+    {
+      "id": "DDCO-004",
+      "name": "Premium Oxford Button-Down Shirt",
+      "category": "Shirts",
+      "description": "A timeless wardrobe essential, our premium Oxford shirt is crafted from fine 100% cotton. Features a classic button-down collar, chest pocket, and curved hem. Versatile enough for both smart-casual and formal settings. Available in a relaxed fit that drapes perfectly.",
+      "images": [
+        "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?w=600&q=80",
+        "https://images.unsplash.com/photo-1607345366928-199ea26cfe3e?w=600&q=80",
+        "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=600&q=80",
+        "https://images.unsplash.com/photo-1602810319428-019690571b5b?w=600&q=80"
+      ],
+      "rating": 4.7,
+      "reviews": 156,
+      "active": true,
+      "featured": false,
+      "fabric": "100% Cotton Oxford Weave",
+      "pattern": "Solid",
+      "net_quantity": 1,
+      "country": "India",
+      "hsn": "6205",
+      "gst": 12,
+      "sizes": {
+        "XS": { "price": 749, "stock": 4 },
+        "S": { "price": 749, "stock": 9 },
+        "M": { "price": 799, "stock": 13 },
+        "L": { "price": 799, "stock": 7 },
+        "XL": { "price": 849, "stock": 5 },
+        "XXL": { "price": 849, "stock": 2 },
+        "XXXL": { "price": 899, "stock": 0 },
+        "4XL": { "price": 949, "stock": 0 }
+      }
+    },
+    {
+      "id": "DDCO-005",
+      "name": "Boho Maxi Wrap Dress",
+      "category": "Dresses",
+      "description": "Channel effortless bohemian vibes with our stunning maxi wrap dress. The adjustable wrap design flatters all body types, while the flowy fabric moves beautifully with every step. Features a V-neckline, long sleeves, and an abstract print that turns heads wherever you go.",
+      "images": [
+        "https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=600&q=80",
+        "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=600&q=80",
+        "https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?w=600&q=80",
+        "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=600&q=80"
+      ],
+      "rating": 4.3,
+      "reviews": 64,
+      "active": true,
+      "featured": true,
+      "fabric": "Georgette (Polyester)",
+      "pattern": "Abstract Print",
+      "net_quantity": 1,
+      "country": "India",
+      "hsn": "6204",
+      "gst": 5,
+      "sizes": {
+        "XS": { "price": 799, "stock": 7 },
+        "S": { "price": 799, "stock": 9 },
+        "M": { "price": 849, "stock": 11 },
+        "L": { "price": 849, "stock": 6 },
+        "XL": { "price": 899, "stock": 3 },
+        "XXL": { "price": 899, "stock": 1 },
+        "XXXL": { "price": 949, "stock": 0 },
+        "4XL": { "price": 999, "stock": 0 }
+      }
+    },
+    {
+      "id": "DDCO-006",
+      "name": "Cargo Shorts with Multi-Pockets",
+      "category": "Shorts",
+      "description": "Meet your new go-to summer essential. Our utility cargo shorts pack serious style with maximum practicality. Six deep pockets keep your essentials secure, while the relaxed fit and durable twill fabric ensure all-day comfort. Perfect for travel, outings, or weekend adventures.",
+      "images": [
+        "https://images.unsplash.com/photo-1591195853828-11db59a44f43?w=600&q=80",
+        "https://images.unsplash.com/photo-1562157873-818bc0726f68?w=600&q=80",
+        "https://images.unsplash.com/photo-1598554747436-c9293d6a588f?w=600&q=80",
+        "https://images.unsplash.com/photo-1517445312882-bc9910d016b7?w=600&q=80"
+      ],
+      "rating": 4.2,
+      "reviews": 45,
+      "active": true,
+      "featured": false,
+      "fabric": "100% Cotton Twill",
+      "pattern": "Solid",
+      "net_quantity": 1,
+      "country": "India",
+      "hsn": "6203",
+      "gst": 12,
+      "sizes": {
+        "XS": { "price": 599, "stock": 5 },
+        "S": { "price": 599, "stock": 8 },
+        "M": { "price": 649, "stock": 10 },
+        "L": { "price": 649, "stock": 7 },
+        "XL": { "price": 699, "stock": 4 },
+        "XXL": { "price": 699, "stock": 2 },
+        "XXXL": { "price": 749, "stock": 1 },
+        "4XL": { "price": 799, "stock": 0 }
+      }
+    },
+    {
+      "id": "DDCO-007",
+      "name": "Fleece-Lined Winter Hoodie",
+      "category": "Hoodies",
+      "description": "Stay cozy in style with our premium fleece-lined hoodie. The exterior features a smooth French terry face while the interior is lined with soft brushed fleece for maximum warmth. Features a spacious kangaroo pocket, adjustable drawstring hood, and ribbed cuffs and hem.",
+      "images": [
+        "https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=600&q=80",
+        "https://images.unsplash.com/photo-1578768079052-aa76e52ff62e?w=600&q=80",
+        "https://images.unsplash.com/photo-1509942774463-acf339cf87d5?w=600&q=80",
+        "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=600&q=80"
+      ],
+      "rating": 4.8,
+      "reviews": 312,
+      "active": true,
+      "featured": true,
+      "fabric": "80% Cotton, 20% Polyester Fleece",
+      "pattern": "Solid",
+      "net_quantity": 1,
+      "country": "India",
+      "hsn": "6110",
+      "gst": 12,
+      "sizes": {
+        "XS": { "price": 999, "stock": 8 },
+        "S": { "price": 999, "stock": 12 },
+        "M": { "price": 1049, "stock": 16 },
+        "L": { "price": 1049, "stock": 10 },
+        "XL": { "price": 1099, "stock": 5 },
+        "XXL": { "price": 1099, "stock": 3 },
+        "XXXL": { "price": 1149, "stock": 2 },
+        "4XL": { "price": 1199, "stock": 1 }
+      }
+    },
+    {
+      "id": "DDCO-008",
+      "name": "Embroidered Casual Shirt",
+      "category": "Shirts",
+      "description": "Make a statement with our uniquely embroidered casual shirt. Subtle floral embroidery on the chest and cuffs adds artisanal charm to this everyday essential. Crafted from soft linen-cotton blend fabric that breathes naturally. Perfect for brunches, casual dates, or evening outings.",
+      "images": [
+        "https://images.unsplash.com/photo-1563630423918-b58bef3e7b9d?w=600&q=80",
+        "https://images.unsplash.com/photo-1589902860314-e910697dea18?w=600&q=80",
+        "https://images.unsplash.com/photo-1594938298603-c8148c4b4b78?w=600&q=80",
+        "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?w=600&q=80"
+      ],
+      "rating": 4.5,
+      "reviews": 89,
+      "active": true,
+      "featured": false,
+      "fabric": "60% Cotton, 40% Linen Blend",
+      "pattern": "Embroidered",
+      "net_quantity": 1,
+      "country": "India",
+      "hsn": "6205",
+      "gst": 12,
+      "sizes": {
+        "XS": { "price": 849, "stock": 3 },
+        "S": { "price": 849, "stock": 7 },
+        "M": { "price": 899, "stock": 10 },
+        "L": { "price": 899, "stock": 6 },
+        "XL": { "price": 949, "stock": 4 },
+        "XXL": { "price": 949, "stock": 1 },
+        "XXXL": { "price": 999, "stock": 0 },
+        "4XL": { "price": 1049, "stock": 0 }
+      }
+    }
+  ],
+  "promo_codes": [
+    {
+      "code": "WELCOME5",
+      "type": "percent",
+      "value": 5,
+      "min_order": 299,
+      "description": "5% off on your first order",
+      "active": true
+    },
+    {
+      "code": "NEWUSER10",
+      "type": "percent",
+      "value": 10,
+      "min_order": 499,
+      "description": "10% off for new customers",
+      "active": true
+    },
+    {
+      "code": "FLAT100",
+      "type": "flat",
+      "value": 100,
+      "min_order": 699,
+      "description": "Flat Rs.100 off on orders above Rs.699",
+      "active": true
+    },
+    {
+      "code": "SAVE15",
+      "type": "percent",
+      "value": 15,
+      "min_order": 999,
+      "description": "Save 15% on orders above Rs.999",
+      "active": true
+    },
+    {
+      "code": "TRENDY20",
+      "type": "percent",
+      "value": 20,
+      "min_order": 1299,
+      "description": "20% off on trending collections",
+      "active": true
+    },
+    {
+      "code": "DEAL25",
+      "type": "percent",
+      "value": 25,
+      "min_order": 1599,
+      "description": "25% mega deal on orders above Rs.1599",
+      "active": true
+    },
+    {
+      "code": "FREESHIP",
+      "type": "freeship",
+      "value": 0,
+      "min_order": 399,
+      "description": "Free delivery on any order above Rs.399",
+      "active": true
+    },
+    {
+      "code": "BIGSALE30",
+      "type": "percent",
+      "value": 30,
+      "min_order": 1999,
+      "description": "30% biggest sale on orders above Rs.1999",
+      "active": true
+    }
+  ]
+}
