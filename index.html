@@ -1175,7 +1175,7 @@ input, select, textarea { font-family: var(--font-body); }
       <h4>Contact</h4>
       <a href="https://wa.me/917600354912" target="_blank">WhatsApp Us</a>
       <a href="https://instagram.com/dailydealswithcrazyoffers" target="_blank">Instagram DM</a>
-      <a href="mailto:dailydealswithcrazyoffers@gmail.com">Email Us</a>
+      <a href="/cdn-cgi/l/email-protection#2440454d485d4041454857534d504c4756455e5d4b4242415657644349454d480a474b49">Email Us</a>
     </div>
   </div>
   <div class="footer-bottom">
@@ -1506,7 +1506,7 @@ input, select, textarea { font-family: var(--font-body); }
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* ===================================================
    STATE & DATA
 =================================================== */
@@ -2231,7 +2231,7 @@ async function placeOrder() {
   // Send email via Formspree
   try {
     const formspreeUrl = storeData?.store?.formspree;
-    if (formspreeUrl && !formspreeUrl.includes('YOUR_FORM_ID')) {
+    if (formspreeUrl) {
       const body = buildEmailBody(orderData);
       const fd = new FormData();
       fd.append('_subject', `New Order ${orderId} - ${orderData.customer.name}`);
@@ -2487,8 +2487,3 @@ document.addEventListener('keydown', e => {
 
 // Spin animation for loading
 const spinStyle = document.createElement('style');
-spinStyle.textContent = '@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}';
-document.head.appendChild(spinStyle);
-</script>
-</body>
-</html>
