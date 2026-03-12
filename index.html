@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Bebas+Neue&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
-<script src="rates.js" defer></script>
+
 <style>
 :root {
   --black: #0a0a0a;
@@ -1045,13 +1045,13 @@ input, select, textarea { font-family: var(--font-body); }
 <!-- ANNOUNCEMENT BAR -->
 <div class="announce-bar">
   <span class="announce-scroll">
-    FREE DELIVERY ON ORDERS ABOVE RS.600 &nbsp;&nbsp;|&nbsp;&nbsp;
+    FREE DELIVERY ON ORDERS ABOVE RS.1299 &nbsp;&nbsp;|&nbsp;&nbsp;
     COD AVAILABLE &nbsp;&nbsp;|&nbsp;&nbsp;
     EASY RETURNS &nbsp;&nbsp;|&nbsp;&nbsp;
     FOLLOW US @DAILYDEALSWITHCRAZYOFFERS &nbsp;&nbsp;|&nbsp;&nbsp;
     USE CODE WELCOME5 FOR 5% OFF &nbsp;&nbsp;|&nbsp;&nbsp;
     PREMIUM QUALITY | TRENDY COLLECTIONS | BEST PRICES &nbsp;&nbsp;|&nbsp;&nbsp;
-    FREE DELIVERY ON ORDERS ABOVE RS.600
+    FREE DELIVERY ON ORDERS ABOVE RS.1299
   </span>
 </div>
 
@@ -1072,18 +1072,14 @@ input, select, textarea { font-family: var(--font-body); }
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-badge">New Arrivals Collection 2025</div>
-  <h1 class="hero-title">Daily<br><span>Deals</span></h1>
+  <div class="hero-badge">Best Collection of 2026</div>
+  <h1 class="hero-title">Best<br><span>Collection</span><br>of 2026</h1>
   <p class="hero-tagline">Premium Quality | Trendy Collections | Best Prices</p>
   <div class="hero-cta">
     <button class="btn-primary" onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
       Shop Now
     </button>
-    <a href="https://instagram.com/dailydealswithcrazyoffers" target="_blank" class="btn-secondary">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
-      Follow on Instagram
-    </a>
   </div>
   <div class="hero-stats">
     <div class="hero-stat"><div class="hero-stat-num">500+</div><div class="hero-stat-label">Happy Customers</div></div>
@@ -1530,36 +1526,57 @@ let lastOrderData = null;
 (function () {
   const bar = document.getElementById('loader-bar');
   let progress = 0;
+  let hidden = false;
   const iv = setInterval(() => {
-    progress += Math.random() * 20;
-    if (progress >= 90) { clearInterval(iv); progress = 90; }
+    progress += Math.random() * 18;
+    if (progress >= 88) { clearInterval(iv); progress = 88; }
     bar.style.width = progress + '%';
-  }, 120);
+  }, 90);
 
-  window.addEventListener('load', () => {
+  window.hideLoader = function () {
+    if (hidden) return;
+    hidden = true;
     clearInterval(iv);
     bar.style.width = '100%';
     setTimeout(() => {
-      document.getElementById('loader').classList.add('fade-out');
-      setTimeout(() => document.getElementById('loader').style.display = 'none', 500);
-    }, 400);
-  });
+      const l = document.getElementById('loader');
+      if (l) { l.classList.add('fade-out'); setTimeout(() => { l.style.display = 'none'; }, 500); }
+    }, 250);
+  };
+
+  // Hide immediately when DOM is ready — data is inline, no fetch needed
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => setTimeout(window.hideLoader, 500));
+  } else {
+    setTimeout(window.hideLoader, 500);
+  }
+  // Absolute hard fallback: 2s no matter what
+  setTimeout(window.hideLoader, 2000);
 })();
 
 /* ===================================================
-   LOAD DATA
+   INLINED STORE DATA (edit here to update products)
+=================================================== */
+const INLINE_DATA = {"store":{"name":"Daily Deals With Crazy Offers","instagram":"@dailydealswithcrazyoffers","tagline":"Premium Quality | Trendy Collections | Best Prices","phone":"+91 76003 54912","whatsapp":"917600354912","email":"dailydealswithcrazyoffers@gmail.com","upi":"7600354912@upi","formspree":"https://formspree.io/f/xyknjkoy","free_delivery_threshold":1299,"cod_charge":20},"categories":["T-Shirts","Shirts","Kurtis","Dresses","Jeans","Shorts","Hoodies","Accessories"],"products":[{"id":"DDCO-001","name":"Classic Oversized Drop-Shoulder Tee","category":"T-Shirts","description":"Experience ultimate comfort with our bestselling oversized drop-shoulder tee. Crafted from premium 240 GSM cotton, this tee offers a relaxed fit perfect for everyday casual wear. The heavyweight fabric ensures durability and a premium feel that lasts wash after wash.","images":["https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&q=80","https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=600&q=80","https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=600&q=80","https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=600&q=80"],"rating":4.6,"reviews":128,"active":true,"featured":true,"fabric":"100% Premium Cotton (240 GSM)","pattern":"Solid","net_quantity":1,"country":"India","hsn":"6109","gst":5,"sizes":{"XS":{"price":499,"stock":10},"S":{"price":499,"stock":8},"M":{"price":549,"stock":15},"L":{"price":549,"stock":12},"XL":{"price":599,"stock":6},"XXL":{"price":599,"stock":4},"XXXL":{"price":649,"stock":2},"4XL":{"price":699,"stock":0}}},{"id":"DDCO-002","name":"Trendy Floral Print Kurti","category":"Kurtis","description":"Elevate your ethnic wardrobe with this stunning floral print kurti. Made from breathable rayon fabric, it drapes beautifully and keeps you comfortable all day. Perfect for festive occasions, casual outings, and office wear. Pairs well with leggings, palazzos, or jeans.","images":["https://images.unsplash.com/photo-1594938298603-c8148c4b4b78?w=600&q=80","https://images.unsplash.com/photo-1612095269037-5c0f3b21e04a?w=600&q=80","https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=600&q=80","https://images.unsplash.com/photo-1617922001439-4a2e6562f328?w=600&q=80"],"rating":4.4,"reviews":87,"active":true,"featured":true,"fabric":"Rayon (Viscose)","pattern":"Floral Print","net_quantity":1,"country":"India","hsn":"6211","gst":5,"sizes":{"XS":{"price":649,"stock":5},"S":{"price":649,"stock":10},"M":{"price":699,"stock":14},"L":{"price":699,"stock":9},"XL":{"price":749,"stock":3},"XXL":{"price":749,"stock":2},"XXXL":{"price":799,"stock":1},"4XL":{"price":849,"stock":0}}},{"id":"DDCO-003","name":"Slim Fit Stretch Denim Jeans","category":"Jeans","description":"Our slim fit stretch denim jeans combine style and comfort seamlessly. With 2% elastane added to premium denim, you get the classic look with added stretch for all-day wear. Features five-pocket styling, button fly, and pre-washed finish for a lived-in feel from day one.","images":["https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&q=80","https://images.unsplash.com/photo-1604176354204-9268737828e4?w=600&q=80","https://images.unsplash.com/photo-1582552938357-32b906df40cb?w=600&q=80","https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&q=80"],"rating":4.5,"reviews":203,"active":true,"featured":true,"fabric":"98% Cotton, 2% Elastane Denim","pattern":"Solid","net_quantity":1,"country":"India","hsn":"6203","gst":12,"sizes":{"XS":{"price":899,"stock":6},"S":{"price":899,"stock":11},"M":{"price":949,"stock":14},"L":{"price":949,"stock":8},"XL":{"price":999,"stock":4},"XXL":{"price":999,"stock":3},"XXXL":{"price":1049,"stock":1},"4XL":{"price":1099,"stock":0}}},{"id":"DDCO-004","name":"Premium Oxford Button-Down Shirt","category":"Shirts","description":"A timeless wardrobe essential, our premium Oxford shirt is crafted from fine 100% cotton. Features a classic button-down collar, chest pocket, and curved hem. Versatile enough for both smart-casual and formal settings. Available in a relaxed fit that drapes perfectly.","images":["https://images.unsplash.com/photo-1598033129183-c4f50c736f10?w=600&q=80","https://images.unsplash.com/photo-1607345366928-199ea26cfe3e?w=600&q=80","https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=600&q=80","https://images.unsplash.com/photo-1602810319428-019690571b5b?w=600&q=80"],"rating":4.7,"reviews":156,"active":true,"featured":false,"fabric":"100% Cotton Oxford Weave","pattern":"Solid","net_quantity":1,"country":"India","hsn":"6205","gst":12,"sizes":{"XS":{"price":749,"stock":4},"S":{"price":749,"stock":9},"M":{"price":799,"stock":13},"L":{"price":799,"stock":7},"XL":{"price":849,"stock":5},"XXL":{"price":849,"stock":2},"XXXL":{"price":899,"stock":0},"4XL":{"price":949,"stock":0}}},{"id":"DDCO-005","name":"Boho Maxi Wrap Dress","category":"Dresses","description":"Channel effortless bohemian vibes with our stunning maxi wrap dress. The adjustable wrap design flatters all body types, while the flowy fabric moves beautifully with every step. Features a V-neckline, long sleeves, and an abstract print that turns heads wherever you go.","images":["https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=600&q=80","https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=600&q=80","https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?w=600&q=80","https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=600&q=80"],"rating":4.3,"reviews":64,"active":true,"featured":true,"fabric":"Georgette (Polyester)","pattern":"Abstract Print","net_quantity":1,"country":"India","hsn":"6204","gst":5,"sizes":{"XS":{"price":799,"stock":7},"S":{"price":799,"stock":9},"M":{"price":849,"stock":11},"L":{"price":849,"stock":6},"XL":{"price":899,"stock":3},"XXL":{"price":899,"stock":1},"XXXL":{"price":949,"stock":0},"4XL":{"price":999,"stock":0}}},{"id":"DDCO-006","name":"Cargo Shorts with Multi-Pockets","category":"Shorts","description":"Meet your new go-to summer essential. Our utility cargo shorts pack serious style with maximum practicality. Six deep pockets keep your essentials secure, while the relaxed fit and durable twill fabric ensure all-day comfort. Perfect for travel, outings, or weekend adventures.","images":["https://images.unsplash.com/photo-1591195853828-11db59a44f43?w=600&q=80","https://images.unsplash.com/photo-1562157873-818bc0726f68?w=600&q=80","https://images.unsplash.com/photo-1598554747436-c9293d6a588f?w=600&q=80","https://images.unsplash.com/photo-1517445312882-bc9910d016b7?w=600&q=80"],"rating":4.2,"reviews":45,"active":true,"featured":false,"fabric":"100% Cotton Twill","pattern":"Solid","net_quantity":1,"country":"India","hsn":"6203","gst":12,"sizes":{"XS":{"price":599,"stock":5},"S":{"price":599,"stock":8},"M":{"price":649,"stock":10},"L":{"price":649,"stock":7},"XL":{"price":699,"stock":4},"XXL":{"price":699,"stock":2},"XXXL":{"price":749,"stock":1},"4XL":{"price":799,"stock":0}}},{"id":"DDCO-007","name":"Fleece-Lined Winter Hoodie","category":"Hoodies","description":"Stay cozy in style with our premium fleece-lined hoodie. The exterior features a smooth French terry face while the interior is lined with soft brushed fleece for maximum warmth. Features a spacious kangaroo pocket, adjustable drawstring hood, and ribbed cuffs and hem.","images":["https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=600&q=80","https://images.unsplash.com/photo-1578768079052-aa76e52ff62e?w=600&q=80","https://images.unsplash.com/photo-1509942774463-acf339cf87d5?w=600&q=80","https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=600&q=80"],"rating":4.8,"reviews":312,"active":true,"featured":true,"fabric":"80% Cotton, 20% Polyester Fleece","pattern":"Solid","net_quantity":1,"country":"India","hsn":"6110","gst":12,"sizes":{"XS":{"price":999,"stock":8},"S":{"price":999,"stock":12},"M":{"price":1049,"stock":16},"L":{"price":1049,"stock":10},"XL":{"price":1099,"stock":5},"XXL":{"price":1099,"stock":3},"XXXL":{"price":1149,"stock":2},"4XL":{"price":1199,"stock":1}}},{"id":"DDCO-008","name":"Embroidered Casual Shirt","category":"Shirts","description":"Make a statement with our uniquely embroidered casual shirt. Subtle floral embroidery on the chest and cuffs adds artisanal charm to this everyday essential. Crafted from soft linen-cotton blend fabric that breathes naturally. Perfect for brunches, casual dates, or evening outings.","images":["https://images.unsplash.com/photo-1563630423918-b58bef3e7b9d?w=600&q=80","https://images.unsplash.com/photo-1589902860314-e910697dea18?w=600&q=80","https://images.unsplash.com/photo-1594938298603-c8148c4b4b78?w=600&q=80","https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?w=600&q=80"],"rating":4.5,"reviews":89,"active":true,"featured":false,"fabric":"60% Cotton, 40% Linen Blend","pattern":"Embroidered","net_quantity":1,"country":"India","hsn":"6205","gst":12,"sizes":{"XS":{"price":849,"stock":3},"S":{"price":849,"stock":7},"M":{"price":899,"stock":10},"L":{"price":899,"stock":6},"XL":{"price":949,"stock":4},"XXL":{"price":949,"stock":1},"XXXL":{"price":999,"stock":0},"4XL":{"price":1049,"stock":0}}}],"promo_codes":[{"code":"WELCOME5","type":"percent","value":5,"min_order":299,"description":"5% off on your first order","active":true},{"code":"NEWUSER10","type":"percent","value":10,"min_order":499,"description":"10% off for new customers","active":true},{"code":"FLAT100","type":"flat","value":100,"min_order":699,"description":"Flat Rs.100 off on orders above Rs.699","active":true},{"code":"SAVE15","type":"percent","value":15,"min_order":999,"description":"Save 15% on orders above Rs.999","active":true},{"code":"TRENDY20","type":"percent","value":20,"min_order":1299,"description":"20% off on trending collections","active":true},{"code":"DEAL25","type":"percent","value":25,"min_order":1599,"description":"25% mega deal on orders above Rs.1599","active":true},{"code":"FREESHIP","type":"freeship","value":0,"min_order":399,"description":"Free delivery on any order above Rs.399","active":true},{"code":"BIGSALE30","type":"percent","value":30,"min_order":1999,"description":"30% biggest sale on orders above Rs.1999","active":true}]};
+
+/* ===================================================
+   INLINED DELIVERY RATES
+=================================================== */
+window.DeliveryRates = (function(){const ZONES={LOCAL:{label:"Local",base:30,days:"1-2 Business Days"},CITY:{label:"Within City",base:40,days:"2-3 Business Days"},STATE:{label:"Within State",base:50,days:"3-4 Business Days"},METRO:{label:"Metro City",base:60,days:"3-5 Business Days"},STANDARD:{label:"Standard",base:70,days:"5-7 Business Days"},REMOTE:{label:"Remote Area",base:100,days:"7-10 Business Days"}};const GST=0.18;const DB={"360001":{zone:"LOCAL",area:"Rajkot - City Centre"},"360002":{zone:"LOCAL",area:"Rajkot - Bhaktinagar"},"360003":{zone:"LOCAL",area:"Rajkot - Kalavad Road"},"360004":{zone:"LOCAL",area:"Rajkot - University Road"},"360005":{zone:"LOCAL",area:"Rajkot - Gondal Road"},"360006":{zone:"LOCAL",area:"Rajkot - Mavdi"},"360007":{zone:"LOCAL",area:"Rajkot - Kothariya"},"360050":{zone:"LOCAL",area:"Rajkot - Gondal"},"360060":{zone:"LOCAL",area:"Rajkot - Jetpur"},"360070":{zone:"LOCAL",area:"Rajkot - Dhoraji"},"360085":{zone:"LOCAL",area:"Rajkot - Vankaner"},"380001":{zone:"CITY",area:"Ahmedabad - Old City"},"380004":{zone:"CITY",area:"Ahmedabad - Ellisbridge"},"380006":{zone:"CITY",area:"Ahmedabad - Navrangpura"},"380052":{zone:"CITY",area:"Ahmedabad - Satellite"},"380054":{zone:"CITY",area:"Ahmedabad - Prahlad Nagar"},"380058":{zone:"CITY",area:"Ahmedabad - Vastrapur"},"380059":{zone:"CITY",area:"Ahmedabad - Thaltej"},"380060":{zone:"CITY",area:"Ahmedabad - Bopal"},"395001":{zone:"CITY",area:"Surat - City Centre"},"395002":{zone:"CITY",area:"Surat - Adajan"},"395006":{zone:"CITY",area:"Surat - Varachha"},"390001":{zone:"CITY",area:"Vadodara - Sayajigunj"},"390002":{zone:"CITY",area:"Vadodara - Alkapuri"},"390007":{zone:"CITY",area:"Vadodara - Akota"},"364001":{zone:"STATE",area:"Bhavnagar - City"},"362001":{zone:"STATE",area:"Junagadh - City"},"370001":{zone:"STATE",area:"Bhuj - City"},"396001":{zone:"STATE",area:"Navsari - City"},"388001":{zone:"STATE",area:"Anand - City"},"382001":{zone:"STATE",area:"Gandhinagar - City"},"361001":{zone:"STATE",area:"Jamnagar - City"},"363001":{zone:"STATE",area:"Surendranagar - City"},"400001":{zone:"METRO",area:"Mumbai - Fort"},"400050":{zone:"METRO",area:"Mumbai - Bandra West"},"400053":{zone:"METRO",area:"Mumbai - Santacruz"},"400059":{zone:"METRO",area:"Mumbai - Andheri East"},"400063":{zone:"METRO",area:"Mumbai - Borivali"},"400068":{zone:"METRO",area:"Mumbai - Kandivali"},"400076":{zone:"METRO",area:"Mumbai - Powai"},"400601":{zone:"METRO",area:"Thane - City"},"400615":{zone:"METRO",area:"Navi Mumbai - Vashi"},"110001":{zone:"METRO",area:"New Delhi - Connaught Place"},"110011":{zone:"METRO",area:"Delhi - Karol Bagh"},"110017":{zone:"METRO",area:"Delhi - Saket"},"110045":{zone:"METRO",area:"Delhi - Dwarka"},"110060":{zone:"METRO",area:"Delhi - Rajouri Garden"},"122001":{zone:"METRO",area:"Gurugram - Sector 14"},"122003":{zone:"METRO",area:"Gurugram - DLF Phase 1"},"201301":{zone:"METRO",area:"Noida - Sector 18"},"560001":{zone:"METRO",area:"Bengaluru - MG Road"},"560010":{zone:"METRO",area:"Bengaluru - Indiranagar"},"560011":{zone:"METRO",area:"Bengaluru - Koramangala"},"560034":{zone:"METRO",area:"Bengaluru - JP Nagar"},"560037":{zone:"METRO",area:"Bengaluru - Marathahalli"},"560038":{zone:"METRO",area:"Bengaluru - Whitefield"},"600001":{zone:"METRO",area:"Chennai - George Town"},"600006":{zone:"METRO",area:"Chennai - T Nagar"},"600015":{zone:"METRO",area:"Chennai - Mylapore"},"600017":{zone:"METRO",area:"Chennai - Adyar"},"700001":{zone:"METRO",area:"Kolkata - BBD Bagh"},"700019":{zone:"METRO",area:"Kolkata - Ballygunge"},"700046":{zone:"METRO",area:"Kolkata - Salt Lake"},"700091":{zone:"METRO",area:"Kolkata - New Town"},"500001":{zone:"METRO",area:"Hyderabad - Abids"},"500018":{zone:"METRO",area:"Hyderabad - Jubilee Hills"},"500034":{zone:"METRO",area:"Hyderabad - Madhapur"},"500035":{zone:"METRO",area:"Hyderabad - HITEC City"},"411001":{zone:"METRO",area:"Pune - Shivajinagar"},"411021":{zone:"METRO",area:"Pune - Baner"},"411045":{zone:"METRO",area:"Pune - Kalyani Nagar"},"411057":{zone:"METRO",area:"Pune - Hinjewadi"},"302001":{zone:"STANDARD",area:"Jaipur - City Centre"},"226001":{zone:"STANDARD",area:"Lucknow - Hazratganj"},"160001":{zone:"STANDARD",area:"Chandigarh - Sector 17"},"462001":{zone:"STANDARD",area:"Bhopal - MP Nagar"},"452001":{zone:"STANDARD",area:"Indore - City Centre"},"440001":{zone:"STANDARD",area:"Nagpur - City Centre"},"641001":{zone:"STANDARD",area:"Coimbatore - City"},"682001":{zone:"STANDARD",area:"Kochi - Fort Kochi"},"695001":{zone:"STANDARD",area:"Thiruvananthapuram - City"},"193401":{zone:"REMOTE",area:"Leh - Ladakh"},"192001":{zone:"REMOTE",area:"Srinagar - J&K"},"737101":{zone:"REMOTE",area:"Gangtok - Sikkim"},"793001":{zone:"REMOTE",area:"Shillong - Meghalaya"},"781001":{zone:"REMOTE",area:"Guwahati - Assam"},"744101":{zone:"REMOTE",area:"Port Blair - Andaman"}};const PFX={"360":"LOCAL","361":"STATE","362":"STATE","363":"STATE","364":"STATE","365":"STATE","370":"STATE","371":"STATE","380":"CITY","381":"CITY","382":"CITY","383":"CITY","384":"CITY","385":"CITY","386":"CITY","387":"CITY","388":"CITY","389":"CITY","390":"CITY","391":"CITY","392":"CITY","393":"CITY","394":"CITY","395":"CITY","396":"CITY","110":"METRO","120":"METRO","122":"METRO","201":"METRO","400":"METRO","401":"METRO","410":"METRO","411":"METRO","412":"METRO","500":"METRO","501":"METRO","560":"METRO","561":"METRO","600":"METRO","601":"METRO","700":"METRO","711":"METRO","302":"STANDARD","303":"STANDARD","226":"STANDARD","227":"STANDARD","160":"STANDARD","161":"STANDARD","462":"STANDARD","452":"STANDARD","440":"STANDARD","641":"STANDARD","682":"STANDARD","695":"STANDARD","180":"STANDARD","181":"STANDARD","781":"STANDARD","737":"REMOTE","793":"REMOTE","791":"REMOTE","795":"REMOTE","796":"REMOTE","744":"REMOTE","192":"REMOTE","193":"REMOTE"};function check(pin){pin=String(pin).trim();if(!/^\d{6}$/.test(pin))return{available:false,reason:"Invalid pincode. Enter a 6-digit pincode."};let zone=null,area=null;if(DB[pin]){zone=DB[pin].zone;area=DB[pin].area;}else{const p=pin.substring(0,3);if(PFX[p]){zone=PFX[p];area="Your Area";}}if(!zone)return{available:false,reason:"Delivery not available to this pincode yet. Contact us on WhatsApp for special arrangements."};const z=ZONES[zone];const base=z.base;const gst=Math.round(base*GST);const total=base+gst;return{available:true,zone,zone_label:z.label,area,base_rate:base,gst,charge:total,days:z.days};}return{check,ZONES};})();
+
+/* ===================================================
+   LOAD DATA — now uses inline data, no fetch needed
 =================================================== */
 async function loadData() {
   try {
-    const r = await fetch('data.json');
-    storeData = await r.json();
+    storeData = INLINE_DATA;
     renderProducts(storeData.products);
     renderFeatured(storeData.products);
     renderCategories(storeData.products);
     renderPromoChips();
   } catch (e) {
-    console.error('Failed to load data.json', e);
-    document.getElementById('product-grid').innerHTML = `<div class="no-products"><h3>Could Not Load Products</h3><p>Make sure data.json is in the same folder as index.html</p></div>`;
+    console.error('Failed to init store data', e);
+    document.getElementById('product-grid').innerHTML = `<div class="no-products"><h3>Could Not Load Products</h3><p>Please refresh the page.</p></div>`;
   }
 }
 
