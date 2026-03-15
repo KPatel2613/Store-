@@ -1072,7 +1072,7 @@ input, select, textarea { font-family: var(--font-body); }
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-badge">New Arrivals Collection 2026</div>
+  <div class="hero-badge">New Arrivals Collection 2025</div>
   <h1 class="hero-title">Daily<br><span>Deals</span></h1>
   <p class="hero-tagline">Premium Quality | Trendy Collections | Best Prices</p>
   <div class="hero-cta">
@@ -1175,7 +1175,7 @@ input, select, textarea { font-family: var(--font-body); }
       <h4>Contact</h4>
       <a href="https://wa.me/917600354912" target="_blank">WhatsApp Us</a>
       <a href="https://instagram.com/dailydealswithcrazyoffers" target="_blank">Instagram DM</a>
-      <a href="mailto:dailydealswithcrazyoffers@gmail.com">Email Us</a>
+      <a href="/cdn-cgi/l/email-protection#6400050d081d0001050817130d100c0716051e1d0b0202011617240309050d084a070b09">Email Us</a>
     </div>
   </div>
   <div class="footer-bottom">
@@ -1506,7 +1506,7 @@ input, select, textarea { font-family: var(--font-body); }
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* ===================================================
    STATE & DATA
 =================================================== */
@@ -1547,19 +1547,204 @@ let lastOrderData = null;
 })();
 
 /* ===================================================
-   LOAD DATA
+   LOAD DATA  –  Google Sheets (no API key needed)
+   Sheet must be published: File → Share → Publish to web
+   Sheets needed: "Store Settings", "Products", "Promo Codes"
 =================================================== */
+const SHEET_ID = '12blss0-7eTRihBoYqPo_BEI_F0NMTOIy';
+
+// Fetch one sheet tab as CSV and return array-of-arrays
+async function fetchSheetCSV(sheetName) {
+  const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(sheetName)}`;
+  const r = await fetch(url);
+  if (!r.ok) throw new Error(`Cannot fetch sheet "${sheetName}": ${r.status}`);
+  const text = await r.text();
+  return parseCSV(text);
+}
+
+// Minimal RFC-4180 CSV parser
+function parseCSV(text) {
+  const rows = [];
+  let row = [], field = '', inQ = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i], next = text[i + 1];
+    if (inQ) {
+      if (c === '"' && next === '"') { field += '"'; i++; }
+      else if (c === '"') inQ = false;
+      else field += c;
+    } else {
+      if (c === '"') { inQ = true; }
+      else if (c === ',') { row.push(field.trim()); field = ''; }
+      else if (c === '\n' || (c === '\r' && next === '\n')) {
+        row.push(field.trim()); rows.push(row); row = []; field = '';
+        if (c === '\r') i++;
+      } else if (c === '\r') {
+        row.push(field.trim()); rows.push(row); row = []; field = '';
+      } else { field += c; }
+    }
+  }
+  if (field || row.length) { row.push(field.trim()); rows.push(row); }
+  return rows.filter(r => r.some(c => c !== ''));
+}
+
+function parseBool(v) {
+  if (typeof v === 'boolean') return v;
+  return String(v).trim().toUpperCase() === 'TRUE';
+}
+
+// Parse "Store Settings" sheet  (col A = key, col B = value, skip row 1 header)
+function parseStoreSettings(rows) {
+  const map = {};
+  for (let i = 1; i < rows.length; i++) {
+    const [key, val] = rows[i];
+    if (key) map[key.trim()] = val ? val.trim() : '';
+  }
+  return {
+    name: map['Store Name'] || '',
+    instagram: map['Instagram Handle'] || '',
+    tagline: map['Tagline'] || '',
+    phone: map['Phone'] || '',
+    whatsapp: map['WhatsApp Number'] || '',
+    email: map['Email'] || '',
+    upi: map['UPI ID'] || '',
+    formspree: map['Formspree Endpoint'] || '',
+    free_delivery_threshold: parseFloat(map['Free Delivery Threshold (₹)']) || 1299,
+    cod_charge: parseFloat(map['COD Charge (₹)']) || 20,
+  };
+}
+
+// Parse "Products" sheet
+// Expected columns (row 3 = header, row 4+ = data):
+// Product ID | Product Name | Category | Active | Featured | Description | Fabric | Pattern |
+// Rating | Reviews Count | Net Quantity | Country of Origin | HSN Code | GST % |
+// Image 1..4 | XS Price | XS Stock | S Price | S Stock | ... | 4XL Price | 4XL Stock
+function parseProducts(rows) {
+  // Find the header row (contains "Product ID")
+  let headerIdx = rows.findIndex(r => r.some(c => c.trim() === 'Product ID'));
+  if (headerIdx === -1) headerIdx = 2; // fallback to row index 2 (row 3)
+  const headers = rows[headerIdx].map(h => h.trim());
+  const SIZES = ['XS','S','M','L','XL','XXL','XXXL','4XL'];
+  const products = [];
+
+  for (let i = headerIdx + 1; i < rows.length; i++) {
+    const r = rows[i];
+    if (!r[0] || !r[0].trim()) continue; // skip empty rows
+
+    const get = (colName) => {
+      const idx = headers.indexOf(colName);
+      return idx !== -1 ? (r[idx] || '').trim() : '';
+    };
+
+    const sizes = {};
+    SIZES.forEach(sz => {
+      const priceCol = `${sz} Price (₹)`;
+      const stockCol = `${sz} Stock`;
+      const price = parseFloat(get(priceCol)) || 0;
+      const stock = parseInt(get(stockCol)) || 0;
+      if (price > 0 || stock >= 0) {
+        sizes[sz] = { price, stock };
+      }
+    });
+
+    // Collect images (up to 4)
+    const images = [];
+    for (let n = 1; n <= 4; n++) {
+      const url = get(`Image ${n} URL`);
+      if (url) images.push(url);
+    }
+
+    products.push({
+      id:           get('Product ID'),
+      name:         get('Product Name'),
+      category:     get('Category'),
+      active:       parseBool(get('Active (TRUE/FALSE)')),
+      featured:     parseBool(get('Featured (TRUE/FALSE)')),
+      description:  get('Description'),
+      fabric:       get('Fabric'),
+      pattern:      get('Pattern'),
+      rating:       parseFloat(get('Rating (0-5)')) || 0,
+      reviews:      parseInt(get('Reviews Count')) || 0,
+      net_quantity: parseInt(get('Net Quantity')) || 1,
+      country:      get('Country of Origin'),
+      hsn:          get('HSN Code'),
+      gst:          parseFloat(get('GST %')) || 5,
+      images:       images.length ? images : ['https://via.placeholder.com/600x600?text=No+Image'],
+      sizes,
+    });
+  }
+  return products;
+}
+
+// Parse "Promo Codes" sheet
+// Expected columns: Code | Type | Value | Min Order (₹) | Description | Active | Notes
+function parsePromoCodes(rows) {
+  let headerIdx = rows.findIndex(r => r.some(c => c.trim() === 'Code'));
+  if (headerIdx === -1) headerIdx = 1;
+  const headers = rows[headerIdx].map(h => h.trim());
+  const promos = [];
+
+  for (let i = headerIdx + 1; i < rows.length; i++) {
+    const r = rows[i];
+    if (!r[0] || !r[0].trim()) continue;
+    const get = (colName) => {
+      const idx = headers.indexOf(colName);
+      return idx !== -1 ? (r[idx] || '').trim() : '';
+    };
+    promos.push({
+      code:        get('Code').toUpperCase(),
+      type:        get('Type').toLowerCase(),
+      value:       parseFloat(get('Value')) || 0,
+      min_order:   parseFloat(get('Min Order (₹)')) || 0,
+      description: get('Description'),
+      active:      parseBool(get('Active (TRUE/FALSE)')),
+    });
+  }
+  return promos;
+}
+
 async function loadData() {
+  const grid = document.getElementById('product-grid');
   try {
-    const r = await fetch('data.json');
-    storeData = await r.json();
+    // Show a gentle loading state
+    grid.innerHTML = `
+      ${[...Array(4)].map(() => `
+        <div class="skeleton-card">
+          <div class="skeleton-img"></div>
+          <div class="skeleton-line med"></div>
+          <div class="skeleton-line short"></div>
+        </div>`).join('')}`;
+
+    // Fetch all three sheets in parallel
+    const [settingsRows, productRows, promoRows] = await Promise.all([
+      fetchSheetCSV('Store Settings'),
+      fetchSheetCSV('Products'),
+      fetchSheetCSV('Promo Codes'),
+    ]);
+
+    storeData = {
+      store:       parseStoreSettings(settingsRows),
+      products:    parseProducts(productRows),
+      promo_codes: parsePromoCodes(promoRows),
+      categories:  [...new Set(parseProducts(productRows).map(p => p.category))],
+    };
+
     renderProducts(storeData.products);
     renderFeatured(storeData.products);
     renderCategories(storeData.products);
     renderPromoChips();
+
   } catch (e) {
-    console.error('Failed to load data.json', e);
-    document.getElementById('product-grid').innerHTML = `<div class="no-products"><h3>Could Not Load Products</h3><p>Make sure data.json is in the same folder as index.html</p></div>`;
+    console.error('Google Sheets load failed:', e);
+    grid.innerHTML = `
+      <div class="no-products" style="grid-column:1/-1;padding:40px;text-align:center">
+        <h3>Could Not Load Products</h3>
+        <p style="margin-top:8px;font-size:13px;color:#555">
+          Make sure your Google Sheet is published:<br>
+          <strong>File → Share → Publish to web → Entire Document → CSV → Publish</strong><br><br>
+          Also confirm the Sheet tab names are exactly:<br>
+          <code>Store Settings</code> &nbsp;|&nbsp; <code>Products</code> &nbsp;|&nbsp; <code>Promo Codes</code>
+        </p>
+      </div>`;
   }
 }
 
@@ -2487,8 +2672,3 @@ document.addEventListener('keydown', e => {
 
 // Spin animation for loading
 const spinStyle = document.createElement('style');
-spinStyle.textContent = '@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}';
-document.head.appendChild(spinStyle);
-</script>
-</body>
-</html>
